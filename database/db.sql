@@ -1,35 +1,18 @@
--- Crear la base de datos
-CREATE DATABASE clinica;
-USE clinica;
+CREATE DATABASE ListadoDePeliculas;
 
--- Crear tabla de doctores
-CREATE TABLE doctores (
-    iddoctor INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(70) NOT NULL,
-    especialidad VARCHAR(70) NOT NULL,
-    CONSTRAINT uk_nombre_doctor UNIQUE (nombre)
-) ENGINE = InnoDB;
+USE ListadoDePeliculas;
 
--- Insertar doctores de ejemplo
-INSERT INTO doctores (nombre, especialidad)
-VALUES
-    ('Dr. Ana Pérez', 'Cardiología'),
-    ('Dr. Luis Ramírez', 'Pediatría'),
-    ('Dr. Sofía Torres', 'Dermatología');
+-- tabla peliculas 
+CREATE TABLE peliculas (
+    idpelicula INT AUTO_INCREMENT PRIMARY KEY,  -- Identificador único para cada película
+    titulo VARCHAR(255) NOT NULL,                -- Título de la película
+    director VARCHAR(255) NOT NULL,              -- Nombre del director de la película
+    genero VARCHAR(100),                         -- Género de la película
+    anio INT                                     -- Año de estreno de la película
+)ENGINE = INNODB;
 
--- Crear tabla de pacientes
-CREATE TABLE pacientes (
-    idpaciente INT AUTO_INCREMENT PRIMARY KEY,
-    iddoctor INT NOT NULL,
-    nombre_paciente VARCHAR(70) NOT NULL,
-    diagnostico VARCHAR(150),
-    CONSTRAINT fk_iddoctor_paciente FOREIGN KEY (iddoctor) REFERENCES doctores(iddoctor)
-) ENGINE = InnoDB;
-
--- Insertar pacientes de ejemplo
-INSERT INTO pacientes (iddoctor, nombre_paciente, diagnostico)
-VALUES
-    (1, 'Luis Soto', 'Arritmia cardiaca'),
-    (2, 'María García', 'Fiebre persistente'),
-    (3, 'Carlos Gómez', 'Dermatitis crónica'),
-    (1, 'Sandra Rivera', 'Presión alta');
+INSERT INTO peliculas (titulo, director, genero, anio) VALUES
+('El Padrino', 'Francis Ford Coppola', 'Crimen, Drama', 1972),
+('La Guerra de las Galaxias', 'George Lucas', 'Ciencia Ficción, Aventura', 1977),
+('Forrest Gump', 'Robert Zemeckis', 'Drama, Comedia', 1994),
+('El Señor de los Anillos: La Comunidad del Anillo', 'Peter Jackson', 'Aventura, Fantasía', 2001);
