@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD </title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+</head>
+<body>
+  
+  <header>
+    <nav></nav>
+  </header>
+
+  <main>
+    <section class="container mt-3">
+
+      <% if (pelicula) { %>
+        <form action="/update" method="post" autocomplete="off" id="formulario">
+          <div class="card">
+            <div class="card-header"><a href="/" class="btn btn-sm btn-secondary">Lista de Peliculas</a></div>
+
+            <div class="card-body">
+
+              <input type="hidden" value="<%= pelicula.idpelicula %>" id="idpelicula" name="idpelicula">
+
+              <div class="mb-3 form-floating">
+                <input type="text" class="form-control" value="<%= pelicula.titulo %>" id="titulo" name="titulo">
+                <label for="form-label">Titulo</label>
+              </div>
+
+              <div class="mb-3 form-floating">
+                <input type="text" class="form-control"  value="<%= pelicula.director %>" id="director" name="director">
+                <label for="form-label">Director</label>
+              </div>
+
+              <div class="mb-3 form-floating">
+                <input type="text" class="form-control"  value="<%= pelicula.genero %>" id="genero" name="genero">
+                <label for="form-label">Genero</label>
+              </div>
+
+              <div class="mb-3 form-floating">
+                <input type="text" class="form-control"  value="<%= pelicula.anio %>" id="anio" name="anio">
+                <label for="form-label">Año</label>
+              </div>
+
+            </div>
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-sm btn-primary">Actualizar</button>
+              <a href="/" class="btn btn-sm btn-secondary">Cancelar</a>
+            </div>
+          </div>
+        </form>
+
+      <% } %>
+    </section>
+  </main>
+
+  <footer>
+    <p></p>
+  </footer>
+
+  <script>
+    const formulario = document.querySelector("#formulario");
+
+    formulario.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if(confirm("¿Esta seguro de guadar")){
+        formulario.submit();
+      }
+    });
+  </script>
+</body>
+</html>
